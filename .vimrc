@@ -166,7 +166,8 @@ au BufRead,BufNewFile *.tex noremap <buffer> k gk
 au BufRead,BufNewFile *.tex noremap <buffer> 0 g0
 au BufRead,BufNewFile *.tex noremap <buffer> $ g$
 
-"===============================================================" "                         Pathogen                              "
+"===============================================================" 
+"                         Pathogen                              "
 "==============================================================="
 execute pathogen#infect()
 
