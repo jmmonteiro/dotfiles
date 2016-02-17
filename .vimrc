@@ -102,9 +102,6 @@ cno jk <c-c>
 
 let mapleader="," "change the leader to be a comma vs slash
 
-"Load Most Recently Used Files
-map <F2> :MRU<kEnter>
-
 "clear last search highlighting
 nmap <C-h> :noh<kEnter>
 
@@ -168,16 +165,6 @@ au BufRead,BufNewFile *.tex noremap <buffer> j gj
 au BufRead,BufNewFile *.tex noremap <buffer> k gk
 au BufRead,BufNewFile *.tex noremap <buffer> 0 g0
 au BufRead,BufNewFile *.tex noremap <buffer> $ g$
-
-"==============================================================="
-"                              MATLAB
-"==============================================================="
-
-"Correct settings in order to use the matchit.vim script
-source $VIMRUNTIME/macros/matchit.vim 
-
-"Integration of the mlint Matlab code checker with the :make command
-autocmd BufEnter *.m    compiler mlint
 
 "===============================================================" "                         Pathogen                              "
 "==============================================================="
