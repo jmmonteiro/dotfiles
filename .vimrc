@@ -12,6 +12,12 @@ set shellslash
 set number
 set relativenumber
 
+" Highlight cursor line
+set cursorline
+
+" show the command in the bottom left corner of the screen
+set showcmd
+
 "Enable mouse in the CLI
 set mouse=a
 
@@ -19,7 +25,7 @@ set mouse=a
 set backspace=2
 
 " Syntax highlight
-syntax on 
+syntax on
 
 set noerrorbells
 
@@ -27,17 +33,18 @@ filetype plugin on " enables filetype specific plugins
 
 "Color Scheme
 if has('gui_running')
-    :colo wombatJAM
-    ":colo herald
+    colo wombatJAM
+    "colo herald
     set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove scrollbar on the right
 else
-    :set t_Co=256
-    :colorscheme darkblue
+    set t_Co=256
+    colorscheme darkblue
 endif
 
 "Search
-:set hlsearch
-:set incsearch "Incremental Search
+set hlsearch
+set incsearch "Incremental Search
 
 "Turn off text warp
 set tw=0 wrap linebreak
@@ -64,10 +71,10 @@ augroup vimrc
 augroup END
 
 " Hide the mouse pointer while typing
-:set mousehide
+set mousehide
 
 " Make the command-line completion better
-:set wildmenu
+set wildmenu
 
 " Airline Config
 set laststatus=2
@@ -77,13 +84,13 @@ if has('gui_running')
 endif
 
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 
 
 "Automatically change the current directory
-:set autochdir
+set autochdir
 
 
 "==============================================================="
@@ -111,8 +118,8 @@ nmap <C-h> :noh<kEnter>
 
 "Paste over a visually selected area without having the selection placed in the default register
 function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
+    let @" = s:restore_reg
+    return ''
 endfunction
 
 function! s:Repl()
@@ -157,7 +164,7 @@ function! WC()
     let filename = expand("%")
     let cmd = "texcount -1 " . filename
     let result = system(cmd)
-	echo result 
+    echo result
 endfunction
 
 command WC call WC()
@@ -169,7 +176,7 @@ au BufRead,BufNewFile *.tex noremap <buffer> k gk
 au BufRead,BufNewFile *.tex noremap <buffer> 0 g0
 au BufRead,BufNewFile *.tex noremap <buffer> $ g$
 
-"===============================================================" 
+"==============================================================="
 "                         Pathogen                              "
 "==============================================================="
 execute pathogen#infect()
