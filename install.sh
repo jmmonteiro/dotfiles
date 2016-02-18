@@ -26,3 +26,5 @@ git clone https://github.com/bling/vim-airline.git ~/.vim/bundle/vim-airline
 git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 git clone https://github.com/vim-scripts/SearchComplete.git ~/.vim/bundle/SearchComplete
 git clone https://github.com/vim-scripts/TaskList.vim ~/.vim/bundle/TaskList.vim
+git clone https://github.com/vim-scripts/mru.vim ~/.vim/bundle/mru.vim
+

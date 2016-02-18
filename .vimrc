@@ -102,6 +102,9 @@ cno jk <c-c>
 
 let mapleader="," "change the leader to be a comma vs slash
 
+"Load Most Recently Used Files
+map <F2> :MRU<kEnter>
+
 "clear last search highlighting
 nmap <C-h> :noh<kEnter>
 
