@@ -3,7 +3,7 @@
 here=$PWD
 
 #--- Make links in the home folder to the dot files in this folder
-for file in  ".tmux.conf" ".vimrc" ".xmodmap"; 
+for file in  ".tmux.conf" ".vimrc" ".xmodmap" ".Xdefaults"; 
 do
     if [[ $(readlink -f $HOME/$file) != $(readlink -f $here/$file) ]]; then
         ln -i -s -T $here/$file $HOME/$file

@@ -1,0 +1,100 @@
+!*transparent:          true
+!*shading:              10
+
+
+! tangoesque scheme
+*background:  #000000
+*foreground:  #aaaaaa
+
+! Black
+*color0:      #101010
+*color8:      #555753
+! Red
+*color1:      #ff6565
+*color9:      #ff8d8d
+! Green
+*color2:      #93d44f
+*color10:     #c8e7a8
+! Yellow
+*color3:      #eab93d
+*color11:     #ffc123
+! Blue
+*color4:      #204a87
+*color12:     #3465a4
+! Mangenta
+*color5:      #ce5c00
+*color13:     #f57900
+! Cyan 
+*color6:      #89b6e2
+*color14:     #46a4ff
+! White
+*color7:      #cccccc
+*color15:     #ffffff
+
+!!Gutterslob Theme
+!urxvt*background:           #333333
+!urxvt*foreground:           #CCCCCC
+!urxvt*cursorColor:          #999999
+!urxvt*colorBD:              #FFFFFF
+!urxvt*colorUL:              #CCCCFF
+
+
+!!BLACK
+!urxvt*color0:               #666666
+!urxvt*color8:               #999999
+!!RED
+!urxvt*color1:               #CC6666
+!urxvt*color9:               #FF9999
+!!GREEN
+!urxvt*color2:               #66cc99
+!urxvt*color10:              #99FFCC
+!!YELLOW
+!urxvt*color3:               #CC9966
+!urxvt*color11:              #FFCC99
+!!BLUE
+!urxvt*color4:               #6699CC
+!urxvt*color12:              #99CCFF
+!!MAGENTA
+!urxvt*color5:               #CC6699
+!urxvt*color13:              #FF99CC
+!!CYAN
+!urxvt*color6:               #66CCCC
+!urxvt*color14:              #99FFFF
+!!WHITE
+!urxvt*color7:               #CCCCCC
+!urxvt*color15:              #FFFFFF
+
+
+
+!urxvt fonts: 
+
+URxvt*font: xft:terminus:pixelsize=14
+URxvt*boldFont: xft:terminus:bold:pixelsize=14
+
+
+
+!urxvt extensions:
+
+URxvt.perl-ext-common:  default,matcher,tabbedex
+
+!enabling clickable links:
+
+URxvt.urlLauncher:      /usr/bin/firefox
+URxvt.matcher.button:   1 
+
+!urxvt scrolling options and cursor style:
+
+URxvt*saveLines: 12000
+URxvt*scrollstyle:plain
+URxvt*scrollBar: false
+URxvt*cursorBlink: true
+
+! urxvt tabs settings:
+
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 2
+URxvt.tabbed.tab-bg: 8
+URxvt.tabbed.autohide:  yes
+URxvt.tabbed.new-button:  no
+URxvt.tabbed.title: no
