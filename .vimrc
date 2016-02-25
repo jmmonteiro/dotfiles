@@ -177,6 +177,16 @@ au BufRead,BufNewFile *.tex noremap <buffer> 0 g0
 au BufRead,BufNewFile *.tex noremap <buffer> $ g$
 
 "==============================================================="
+"                         Org files                              "
+"==============================================================="
+"Remap movement keys
+au BufRead,BufNewFile *.org noremap <buffer> j gj
+au BufRead,BufNewFile *.org noremap <buffer> k gk
+au BufRead,BufNewFile *.org noremap <buffer> 0 g0
+au BufRead,BufNewFile *.org noremap <buffer> $ g$
+
+
+"==============================================================="
 "                         Pathogen                              "
 "==============================================================="
 execute pathogen#infect()
