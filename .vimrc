@@ -92,6 +92,8 @@ let g:airline_symbols.space = "\ua0"
 "Automatically change the current directory
 set autochdir
 
+" Enable FZF
+set rtp+=~/.fzf
 
 "==============================================================="
 "                       General Keybindings

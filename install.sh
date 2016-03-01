@@ -11,6 +11,10 @@ do
     fi
 done
 
+#--- General usage Stuff
+# FZF - General use fuzzyfinder, works with vim as well by doing :FZF
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+
 #--- Vim
 # Install pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -28,4 +32,4 @@ git clone https://github.com/vim-scripts/SearchComplete.git ~/.vim/bundle/Search
 git clone https://github.com/vim-scripts/TaskList.vim ~/.vim/bundle/TaskList.vim
 git clone https://github.com/vim-scripts/mru.vim ~/.vim/bundle/mru.vim
 git clone https://github.com/jceb/vim-orgmode ~/.vim/bundle/vim-orgmode
-
+git clone https://github.com/ervandew/supertab ~/.vim/bundle/supertab
