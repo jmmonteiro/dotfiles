@@ -33,3 +33,4 @@ git clone https://github.com/vim-scripts/TaskList.vim ~/.vim/bundle/TaskList.vim
 git clone https://github.com/vim-scripts/mru.vim ~/.vim/bundle/mru.vim
 git clone https://github.com/jceb/vim-orgmode ~/.vim/bundle/vim-orgmode
 git clone https://github.com/ervandew/supertab ~/.vim/bundle/supertab
+git clone https://github.com/junegunn/fzf.vim ~/.vim/bundle/fzf.vim
