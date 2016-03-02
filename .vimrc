@@ -1,9 +1,48 @@
 "==============================================================="
+"                              Plugins
+"==============================================================="
+"
+" Disable behaviour like vi, must be the first line!!!!
+set nocompatible              " be iMproved, required
+
+filetype off                  " required for vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Keep Plugin commands between vundle#begin/end.
+
+Plugin 'vim-scripts/Align.git'
+Plugin 'LaTeX-Box-Team/LaTeX-Box.git'
+Plugin 'Valloric/YouCompleteMe.git'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'bling/vim-airline.git'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'vim-scripts/SearchComplete.git'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'vim-scripts/mru.vim'
+Plugin 'jceb/vim-orgmode'
+Plugin 'ervandew/supertab'
+Plugin 'junegunn/fzf.vim'
+Plugin 'SirVer/ultisnips' "Snippets engine
+Plugin 'honza/vim-snippets' " Snippets from third party
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+"==============================================================="
 "                          General Settings
 "==============================================================="
 
-" Disable behaviour like vi, must be the first line!!!!
-set nocompatible
 
 "will replace backslashes with forward slashes when expanding file names
 set shellslash
@@ -187,9 +226,13 @@ au BufRead,BufNewFile *.org noremap <buffer> k gk
 au BufRead,BufNewFile *.org noremap <buffer> 0 g0
 au BufRead,BufNewFile *.org noremap <buffer> $ g$
 
-
 "==============================================================="
-"                         Pathogen                              "
+"                         UltiSnips                              "
 "==============================================================="
-execute pathogen#infect()
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
