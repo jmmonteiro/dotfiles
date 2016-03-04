@@ -19,7 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 
 Plugin 'vim-scripts/Align.git'
-Plugin 'LaTeX-Box-Team/LaTeX-Box.git'
+Plugin 'lervag/vimtex.git'
 Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/syntastic.git'
@@ -199,18 +199,6 @@ au FileType mail :setlocal spell
 "==============================================================="
 "                                LaTeX
 "==============================================================="
-
-"Count words in LaTeX (NOT WORKING PROPERLY)
-function! WC()
-    let filename = expand("%")
-    let cmd = "texcount -1 " . filename
-    let result = system(cmd)
-    echo result
-endfunction
-
-command WC call WC()
-
-
 "Remap movement keys
 au BufRead,BufNewFile *.tex noremap <buffer> j gj
 au BufRead,BufNewFile *.tex noremap <buffer> k gk
