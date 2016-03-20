@@ -78,7 +78,7 @@ if has('gui_running')
     set guioptions-=r  "remove scrollbar on the right
 else
     set t_Co=256
-    colorscheme darkblue
+    colorscheme herald
 endif
 
 "Search
