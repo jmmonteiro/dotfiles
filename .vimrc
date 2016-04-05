@@ -30,7 +30,7 @@ Plugin 'vim-scripts/TaskList.vim'
 Plugin 'vim-scripts/mru.vim'
 Plugin 'jceb/vim-orgmode'
 Plugin 'ervandew/supertab'
-Plugin 'junegunn/fzf.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'SirVer/ultisnips' "Snippets engine
 Plugin 'honza/vim-snippets' " Snippets from third party
 
@@ -131,8 +131,6 @@ let g:airline_symbols.space = "\ua0"
 "Automatically change the current directory
 set autochdir
 
-" Enable FZF
-set rtp+=~/.fzf
 
 "==============================================================="
 "                       General Keybindings
