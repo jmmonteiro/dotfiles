@@ -223,7 +223,7 @@ bindsym $mod+z exec i3lock
 # finds out, if available)
 bar {
 #status_command i3status
-    status_command i3status --config ~/.i3/i3status.conf
+    status_command i3blocks -c ~/.i3/i3blocks.conf
    
 
     colors {
@@ -277,6 +277,9 @@ exec pidgin
 #exec   start-pulseaudio-x11 
 #exec  update-notifier 
 exec thunderbird  
+
+
+exec_always compton -fb # fade effects on windows
 
 #---Configuracoes
 #exec ~/Scripts/changeCaps.sh #change CapsLock
