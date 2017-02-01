@@ -53,6 +53,8 @@ set relativenumber
 
 " Highlight cursor line
 set cursorline
+" Highlight cursor column
+set cursorcolumn
 
 " show the command in the bottom left corner of the screen
 set showcmd
