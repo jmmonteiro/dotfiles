@@ -1,7 +1,7 @@
 #--- Programming
 #----------------------------------------------
 # added by Anaconda3 4.1.1 installer
-export PATH="/home/joao/anaconda3/bin:$PATH"
+#export PATH="/home/joao/anaconda3/bin:$PATH"
 
 #--- Misc
 #----------------------------------------------
