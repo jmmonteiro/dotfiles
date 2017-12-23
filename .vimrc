@@ -208,6 +208,15 @@ au BufRead,BufNewFile *.tex noremap <buffer> 0 g0
 au BufRead,BufNewFile *.tex noremap <buffer> $ g$
 
 "==============================================================="
+"                                Markdown
+"==============================================================="
+"Remap movement keys
+au BufRead,BufNewFile *.md noremap <buffer> j gj
+au BufRead,BufNewFile *.md noremap <buffer> k gk
+au BufRead,BufNewFile *.md noremap <buffer> 0 g0
+au BufRead,BufNewFile *.md noremap <buffer> $ g$
+
+"==============================================================="
 "                         Org files                              "
 "==============================================================="
 "Remap movement keys
