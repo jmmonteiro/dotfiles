@@ -1,19 +1,15 @@
-#--- Programming
+# --- Customization
 #----------------------------------------------
-# added by Anaconda3 4.1.1 installer
-#export PATH="/home/joao/anaconda3/bin:$PATH"
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-#--- Alias
+# --- Alias
 #----------------------------------------------
 alias ll='ls -all -h'
 
-#--- Misc
+# --- Misc
 #----------------------------------------------
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-
-#--- Games
-#----------------------------------------------
-# Dwarf Fortress
-alias dwarftherapist='~/.local/bin/DwarfTherapist'
