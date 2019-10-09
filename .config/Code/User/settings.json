@@ -1,0 +1,91 @@
+{
+    "window.zoomLevel": 0,
+    "keyboard.dispatch": "keyCode",
+    "breadcrumbs.enabled": true,
+    "bracketPairColorizer.showBracketsInGutter": true,
+    "workbench.statusBar.feedback.visible": false,
+    "python.venvPath": "~/python_env/",
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--enable=W0614",
+        "--disable=C0103",
+        "--disable=C0111",
+        "--disable=C0301",
+        "--disable=C0330"
+    ],
+    "C_Cpp.updateChannel": "Insiders",
+    "cmake.configureOnOpen": false,
+    "editor.minimap.enabled": false,
+    "python.pythonPath": "/home/joao/python_env/myEnv/bin/python",
+    "lldb.adapterType": "bundled",
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "editor.renderControlCharacters": false,
+    "editor.formatOnSave": true,
+    "python.dataScience.debugJustMyCode": false,
+    "editor.renderWhitespace": "none",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "vim.useSystemClipboard": true,
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-f>": false
+    },
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "dd"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "dd"
+            ]
+        },
+        {
+            "before": [
+                "D"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "D"
+            ]
+        },
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "s"
+            ]
+        }
+    ],
+    "files.watcherExclude": {
+        "**/__pycache__/**": true,
+        "**/.venv/**": true
+    }
+}
