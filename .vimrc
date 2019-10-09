@@ -76,8 +76,8 @@ filetype plugin on " enables filetype specific plugins
 
 "Color Scheme
 if has('gui_running')
-    colo wombatJAM
-    "colo herald
+    "colo wombatJAM
+    colo herald
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove scrollbar on the right
 else
@@ -197,6 +197,11 @@ au BufNewFile,BufRead *.bib :setlocal spell
 au FileType mail :setlocal spell
 "map <F4> <Esc>:setlocal spl=pt spell<kEnter>
 
+"==============================================================="
+"                              C++
+"==============================================================="
+set path+=~/git/autoscheduler/autoscheduler/src
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 "==============================================================="
 "                                LaTeX
