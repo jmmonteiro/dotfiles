@@ -19,6 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 
 Plugin 'vim-scripts/Align.git'
+Plugin 'tomasr/molokai.git'
 Plugin 'lervag/vimtex.git'
 Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'scrooloose/nerdcommenter.git'
@@ -76,13 +77,13 @@ filetype plugin on " enables filetype specific plugins
 
 "Color Scheme
 if has('gui_running')
-    "colo wombatJAM
-    colo herald
+    "colo molokai"
+    colo molokai
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove scrollbar on the right
 else
     set t_Co=256
-    colorscheme herald
+    colorscheme molokai
 endif
 
 "Search
