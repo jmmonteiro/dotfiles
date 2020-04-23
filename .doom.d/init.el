@@ -20,8 +20,8 @@
 
        :completion
        company           ; the ultimate code completion backend
-       ;;helm              ; the *other* search engine for love and life
-       ;;ido               ; the other *other* search engine...
+       ;; helm              ; the *other* search engine for love and life
+       ;; ido               ; the other *other* search engine...
        ivy               ; a search engine for love and life
 
        :ui
@@ -72,7 +72,7 @@
        :term
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
-       ;;term              ; basic terminal emulator for Emacs
+       term              ; basic terminal emulator for Emacs
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
@@ -129,7 +129,7 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       ;;latex             ; writing papers in Emacs has never been so fun
+       latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
@@ -149,7 +149,7 @@
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor

@@ -54,6 +54,16 @@
 ;; they are implemented.
 ;;
 
+; -----------------------------------------
+; --- Auto-complete
+; -----------------------------------------
+(use-package company
+  :init (global-company-mode))
+; Python
+(use-package company-jedi
+  :init (add-to-list 'company-backends 'company-jedi))
+(use-package python
+  :hook ((python-mode . jedi:setup)))
 
 ; -----------------------------------------
 ; --- Movement
@@ -70,7 +80,29 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 
-; Superagenda
+
+; -----------------------------------------
+; --- Python
+; -----------------------------------------
+; Autoformat on save
+(add-hook 'python-mode-hook 'yapf-mode)
+
+; -----------------------------------------
+; --- Spelling
+; -----------------------------------------
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+(add-hook 'markdown-mode-hook 'turn-on-flyspell)
+
+; -----------------------------------------
+; --- Org-mode
+; -----------------------------------------
+
+; Custom org-mode states
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
+; -- super-agenda
 (setq org-super-agenda-header-map (make-sparse-keymap))
 (setq spacemacs-theme-org-agenda-height nil
       org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
@@ -112,7 +144,10 @@
                           (:name "Waiting"
                                  :todo "WAIT"
                                  :order 20)
-                          (:name "trivial"
+                          (:name "Regular work"
+                                 :priority "B"
+                                 :order 10)
+                          (:name "Trivial"
                                  :priority<= "C"
                                  :tag ("Trivial" "Unimportant")
                                  :todo ("SOMEDAY" )
