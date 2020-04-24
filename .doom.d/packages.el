@@ -17,8 +17,14 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-;
+
+
+; Org-mode
 (package! org-super-agenda)
+(package! org-alert)
+(package! org-ref)
+
+; Python
 (package! yapfify)
 (package! jedi)
 (package! company-jedi)

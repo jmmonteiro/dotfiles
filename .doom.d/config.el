@@ -55,6 +55,11 @@
 ;;
 
 ; -----------------------------------------
+; --- Projectile
+; -----------------------------------------
+(setq projectile-project-search-path '("~/git/"))
+
+; -----------------------------------------
 ; --- Auto-complete
 ; -----------------------------------------
 (use-package company
@@ -98,14 +103,18 @@
 ; --- Org-mode
 ; -----------------------------------------
 
+; Org-ref
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/org/ref.bib"))
+(setq org-ref-pdf-directory "~/Documents/papers/")
+
 ; Custom org-mode states
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+(setq alert-default-style 'libnotify)
 
 ; -- super-agenda
 (setq org-super-agenda-header-map (make-sparse-keymap))
 (setq spacemacs-theme-org-agenda-height nil
-      org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
+      ;; org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-include-deadlines t
