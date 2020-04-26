@@ -103,6 +103,20 @@
 ; --- Org-mode
 ; -----------------------------------------
 
+; Custom status/colors
+(after! org
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
+
+  (setq org-todo-keyword-faces
+        (quote (("TODO" :foreground "#74c95d" :weight bold)
+                ("BLOCKED" :foreground "#cc6666" :weight bold)
+                ("DONE" :foreground "#808080" :weight bold)
+                ("CANCELLED" :foreground "#f0c674" :weight bold)
+                ("DELEGATED" :foreground "#b294bb" :weight bold))))
+
+)
+
 ;; Org-crypt
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
