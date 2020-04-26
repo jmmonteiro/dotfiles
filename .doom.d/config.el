@@ -103,13 +103,26 @@
 ; --- Org-mode
 ; -----------------------------------------
 
-; Org-ref
+;; Org-crypt
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
+(setq org-crypt-key "7C7C1C77")
+  ;; GPG key to use for encryption
+  ;; Either the Key ID or set to nil to use symmetric encryption.
+
+
+;; Org-ref
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/org/ref.bib"))
 (setq org-ref-pdf-directory "~/Documents/papers/")
 
 ; Custom org-mode states
 (setq alert-default-style 'libnotify)
+
+; Display start of agenda to today
+(setq org-agenda-start-day "0d")
 
 ; -- super-agenda
 (setq org-super-agenda-header-map (make-sparse-keymap))
