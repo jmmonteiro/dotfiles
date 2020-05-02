@@ -1,6 +1,5 @@
 #+TITLE: Configuration
 
-
 Some functionality uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
 #+BEGIN_SRC emacs-lisp
@@ -116,15 +115,25 @@ clients, file templates and snippets.
 (org-super-agenda-mode)
 #+END_SRC
 
+** Notifications
+#+BEGIN_SRC emacs-lisp
+; Desktop notifications
+(setq alert-default-style 'libnotify)
+(setq appt-disp-window-function (lambda (min-to-app new-time appt-msg)
+                                                         (alert appt-msg)))
+(setq appt-delete-window-function (lambda ()))
+; Rebuild the reminders everytime the agenda is displayed
+(add-hook 'org-agenda-finalize-hook (lambda () (org-agenda-to-appt t)))
+; Run once when Emacs starts
+(org-agenda-to-appt t)
+; Activate appointments so we get notifications
+(appt-activate t)
+#+END_SRC
 ** Spelling
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 (add-hook 'markdown-mode-hook 'turn-on-flyspell)
-#+END_SRC
-** Other settings
-#+BEGIN_SRC emacs-lisp
-(setq alert-default-style 'libnotify)
 #+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
