@@ -85,12 +85,17 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 
-
 ; -----------------------------------------
 ; --- Python
 ; -----------------------------------------
+(setq gud-pdb-command-name "python -m pdb ")
 ; Autoformat on save
+; Set M-x pdb command to use the virtualenv's python debugger
 (add-hook 'python-mode-hook 'yapf-mode)
+; Check linting
+(add-hook 'python-mode-hook 'flycheck-mode)
+; Sort imports
+(add-hook 'before-save-hook 'py-isort-before-save)
 
 ; -----------------------------------------
 ; --- Spelling
@@ -106,7 +111,7 @@
 ; Custom status/colors
 (after! org
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
+      '((sequence "TODO(t!)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
 
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "#74c95d" :weight bold)
@@ -183,7 +188,7 @@
                           (:name "Regular work"
                                  :priority "B"
                                  :order 10)
-                          (:name "Trivial"
+                          (:name "Someday"
                                  :priority<= "C"
                                  :tag ("Trivial" "Unimportant")
                                  :todo ("SOMEDAY" )

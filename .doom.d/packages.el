@@ -23,6 +23,7 @@
 (package! org-super-agenda)
 (package! org-alert)
 (package! org-ref)
+(package! org-d20)
 
 ; Python
 (package! yapfify)
