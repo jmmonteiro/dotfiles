@@ -24,6 +24,8 @@
 (package! org-alert)
 (package! org-ref)
 (package! org-d20)
+; Org-roam
+(package! company-org-roam)
 
 ; Python
 (package! yapfify)

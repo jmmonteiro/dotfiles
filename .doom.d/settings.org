@@ -16,15 +16,17 @@ clients, file templates and snippets.
 (setq display-line-numbers-type t)
 #+END_SRC
 
-* Org-mode
-** Define location of org-files
+* Organisation
+** Org-mode
+*** Define location of org-files
+**** Org-mode
 #+BEGIN_SRC emacs-lisp
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
 #+END_SRC
-** Custom TODO workflow
+*** Custom TODO workflow
 #+BEGIN_SRC emacs-lisp
 (after! org
 (setq org-todo-keywords
@@ -39,7 +41,7 @@ clients, file templates and snippets.
 
 )
 #+END_SRC
-** Encryption
+*** Encryption
 #+BEGIN_SRC emacs-lisp
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
@@ -50,13 +52,7 @@ clients, file templates and snippets.
 (setq org-crypt-key "7C7C1C77")
 #+END_SRC
 
-** Org-ref
-#+BEGIN_SRC emacs-lisp
-(require 'org-ref)
-(setq reftex-default-bibliography '("~/org/ref.bib"))
-(setq org-ref-pdf-directory "~/Documents/papers/")
-#+END_SRC
-** Agenda
+*** Agenda
 #+BEGIN_SRC emacs-lisp
 ; Display start of agenda to today
 (setq org-agenda-start-day "0d")
@@ -115,7 +111,7 @@ clients, file templates and snippets.
 (org-super-agenda-mode)
 #+END_SRC
 
-** Notifications
+*** Notifications
 #+BEGIN_SRC emacs-lisp
 ; Desktop notifications
 (setq alert-default-style 'libnotify)
@@ -129,11 +125,34 @@ clients, file templates and snippets.
 ; Activate appointments so we get notifications
 (appt-activate t)
 #+END_SRC
-** Spelling
+*** Spelling
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 (add-hook 'markdown-mode-hook 'turn-on-flyspell)
+#+END_SRC
+** Org-ref
+#+BEGIN_SRC emacs-lisp
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/org/ref.bib"))
+(setq org-ref-pdf-directory "~/Documents/papers/")
+#+END_SRC
+** Org-roam
+#+BEGIN_SRC emacs-lisp
+(use-package org-roam
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/org/")
+      (org-roam-index-file "~/org/index.org")
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n j" . org-roam-jump-to-index)
+               ("C-c n b" . org-roam-switch-to-buffer)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))))
 #+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
