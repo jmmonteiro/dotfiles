@@ -3,7 +3,7 @@
 Some functionality uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
 #+BEGIN_SRC emacs-lisp
-(setq user-full-name "Joao M. Monteiro"
+(setq user-full-name "João M. Monteiro"
       user-mail-address "")
 #+END_SRC
 * Appearance
@@ -23,8 +23,14 @@ clients, file templates and snippets.
 #+BEGIN_SRC emacs-lisp
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
+(setq org-directory "~/Dropbox/org/")
+(setq org-agenda-files (directory-files-recursively "~/Dropbox/org/" "\.org$"))
+#+END_SRC
+**** Org-ref
+#+BEGIN_SRC emacs-lisp
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/Dropbox/org/ref.bib"))
+(setq org-ref-pdf-directory "~/Documents/papers/")
 #+END_SRC
 *** Custom TODO workflow
 #+BEGIN_SRC emacs-lisp
@@ -60,7 +66,6 @@ clients, file templates and snippets.
 ; -- super-agenda
 (setq org-super-agenda-header-map (make-sparse-keymap))
 (setq spacemacs-theme-org-agenda-height nil
-      ;; org-agenda-time-grid '((daily today require-timed) "----------------------" nil)
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-include-deadlines t
@@ -131,20 +136,14 @@ clients, file templates and snippets.
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 (add-hook 'markdown-mode-hook 'turn-on-flyspell)
 #+END_SRC
-** Org-ref
-#+BEGIN_SRC emacs-lisp
-(require 'org-ref)
-(setq reftex-default-bibliography '("~/org/ref.bib"))
-(setq org-ref-pdf-directory "~/Documents/papers/")
-#+END_SRC
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
 (use-package org-roam
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/org/")
-      (org-roam-index-file "~/org/index.org")
+      (org-roam-directory "~/Dropbox/org/")
+      (org-roam-index-file "~/Dropbox/org/index.org")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
