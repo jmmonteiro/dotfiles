@@ -18,12 +18,10 @@ clients, file templates and snippets.
 
 * Organisation
 ** Org-mode
-*** Define location of org-files
+*** Define location of org-files for the agenda
 **** Org-mode
+You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The reason that this line of code is not in the block below, is because ~org~ is loaded on ~config.el~ (i.e. before this file is loaded), since you need ~org~ to be loaded to read this ~settings.org~ file in the first place.
 #+BEGIN_SRC emacs-lisp
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (directory-files-recursively "~/Dropbox/org/" "\.org$"))
 #+END_SRC
 **** Org-ref
