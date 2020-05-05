@@ -22,12 +22,12 @@ clients, file templates and snippets.
 **** Org-mode
 You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The reason that this line of code is not in the block below, is because ~org~ is loaded on ~config.el~ (i.e. before this file is loaded), since you need ~org~ to be loaded to read this ~settings.org~ file in the first place.
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files (directory-files-recursively "~/Dropbox/org/" "\.org$"))
+(setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
 #+END_SRC
 **** Org-ref
 #+BEGIN_SRC emacs-lisp
 (require 'org-ref)
-(setq reftex-default-bibliography '("~/Dropbox/org/ref.bib"))
+(setq reftex-default-bibliography '(concat org-directory  "ref.bib"))
 (setq org-ref-pdf-directory "~/Documents/papers/")
 #+END_SRC
 *** Custom TODO workflow
@@ -140,8 +140,9 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/Dropbox/org/")
-      (org-roam-index-file "~/Dropbox/org/index.org")
+      (org-roam-directory org-directory)
+      (org-roam-index-file (concat org-directory "index.org"))
+      (org-roam-graph-viewer "display")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
@@ -150,6 +151,16 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
                ("C-c n g" . org-roam-graph))
               :map org-mode-map
               (("C-c n i" . org-roam-insert))))
+
+#+END_SRC
+** Searching
+Doom Emacs already uses ~ripgrep~ with SPC-n-s. Why not add ~deft~ as well with SPC-n-d?
+#+BEGIN_SRC emacs-lisp
+(use-package deft
+  :config (setq deft-directory org-directory
+                deft-extensions '("md" "org")
+                deft-recursive t
+                ))
 #+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
