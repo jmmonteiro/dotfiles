@@ -5,7 +5,7 @@ here=$PWD
 #--- Make links in the home folder to the dot files in this folder
 for file in  ".tmux.conf" ".vimrc" ".Xmodmap" ".Xdefaults" ".bashrc" ".i3/config" \
     ".i3/i3blocks.conf" ".doom.d/config.el" ".doom.d/init.el" ".doom.d/packages.el" \
-    ".doom.d/settings.org" ".alacritty.yml"; 
+    ".doom.d/settings.org" ".alacritty.yml", ".scripts/changeCaps.sh"; 
 do
     if [[ $(readlink -f $HOME/$file) != $(readlink -f $here/$file) ]]; then
         ln -i -s -T $here/$file $HOME/$file
