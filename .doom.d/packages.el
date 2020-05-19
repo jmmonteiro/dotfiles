@@ -18,6 +18,8 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
+; Display
+(package! highlight-indent-guides)
 
 ; Org-mode
 (package! org-super-agenda)
@@ -31,6 +33,16 @@
 (package! yapfify)
 (package! jedi)
 (package! company-jedi)
+
+; Rust
+(package! racer)
+(package! company-racer)
+
+
+; Elfeed
+(package! elfeed)
+(package! elfeed-org)
+(package! elfeed-goodies)
 
 ;; To install a package directly from a particular repo, you'll need to specify
 ;; a `:recipe'. You'll find documentation on what `:recipe' accepts here:

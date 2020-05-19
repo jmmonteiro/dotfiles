@@ -12,10 +12,17 @@ clients, file templates and snippets.
 (setq doom-font (font-spec :family "monospace" :size 14))
 ;; Theme
 (setq doom-theme 'doom-one)
+;; Custom startup screen
+(setq initial-major-mode 'org-mode)
 ;; Line numbers
 (setq display-line-numbers-type t)
 #+END_SRC
 
+Indentation guide lines
+#+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-method 'character)
+#+END_SRC
 * Organisation
 ** Org-mode
 *** Define location of org-files for the agenda
@@ -27,7 +34,7 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 **** Org-ref
 #+BEGIN_SRC emacs-lisp
 (require 'org-ref)
-(setq reftex-default-bibliography '(concat org-directory  "ref.bib"))
+(setq reftex-default-bibliography '(concat org-directory "ref.bib"))
 (setq org-ref-pdf-directory "~/Documents/papers/")
 #+END_SRC
 *** Custom TODO workflow
@@ -134,6 +141,40 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 (add-hook 'markdown-mode-hook 'turn-on-flyspell)
 #+END_SRC
+*** Templates
+#+BEGIN_SRC emacs-lisp
+(after! org-capture
+  (add-to-list 'org-capture-templates
+          '("q"               ; key
+            "Work Note"         ; name
+            entry             ; type
+            (file "~/Dropbox/org/work/notes.org")  ; target
+            "* %U %? "  ; template
+            :empty-lines 0    ; properties
+            :created t        ; properties
+            ))
+  (add-to-list 'org-capture-templates
+         '("w"               ; key
+           "Work TODO"         ; name
+           entry             ; type
+           (file+headline "~/Dropbox/org/work/todo.org" "Inbox")  ; target
+           "* TODO %? \n:PROPERTIES:\n:Created: %U\n:END:\n%i\n %a"  ; template
+           :prepend t        ; properties
+           :empty-lines 0    ; properties
+           :created t        ; properties
+           ))
+)
+#+END_SRC
+*** Hooks
+Automatically update checkbox counters on save.
+#+BEGIN_SRC emacs-lisp
+(defun custom_org_auto_check()
+  (org-update-checkbox-count t)
+  )
+(add-hook 'org-mode-hook
+          (lambda ()
+             (add-hook 'before-save-hook 'custom_org_auto_check nil 'make-it-local)))
+#+END_SRC
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
 (use-package org-roam
@@ -142,7 +183,6 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
       :custom
       (org-roam-directory org-directory)
       (org-roam-index-file (concat org-directory "index.org"))
-      (org-roam-graph-viewer "display")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
@@ -185,6 +225,16 @@ Doom Emacs already uses ~ripgrep~ with SPC-n-s. Why not add ~deft~ as well with 
 (use-package company
   :init (global-company-mode))
 #+END_SRC
+
+Debugger
+#+BEGIN_SRC emacs-lisp
+(global-set-key [f5] 'gud-cont)
+(global-set-key [f7] 'gud-tbreak)
+(global-set-key [S-f11] 'gud-finish)
+(global-set-key [f9] 'gud-break)
+(global-set-key [f10] 'gud-next)
+(global-set-key [f11] 'gud-step)
+#+END_SRC
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package company-jedi
@@ -202,4 +252,43 @@ Doom Emacs already uses ~ripgrep~ with SPC-n-s. Why not add ~deft~ as well with 
 (add-hook 'python-mode-hook 'flycheck-mode)
 ; Sort imports
 (add-hook 'before-save-hook 'py-isort-before-save)
+#+END_SRC
+** Rust
+These need some rust components to be [[https://github.com/racer-rust/emacs-racer][installed first]].
+#+BEGIN_SRC emacs-lisp
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+#+END_SRC
+
+Auto completion
+#+BEGIN_SRC emacs-lisp
+(add-hook 'racer-mode-hook #'company-mode)
+
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+#+END_SRC
+* RSS
+Elfeed-org
+#+BEGIN_SRC emacs-lisp
+;; Load elfeed-org
+(require 'elfeed-org)
+
+;; Initialize elfeed-org
+;; This hooks up elfeed-org to read the configuration when elfeed
+;; is started with =M-x elfeed=
+(elfeed-org)
+
+;; Optionally specify a number of files containing elfeed
+;; configuration. If not set then the location below is used.
+;; Note: The customize interface is also supported.
+(setq rmh-elfeed-org-files (list (concat org-directory "personal/feeds.org")))
+#+END_SRC
+
+Extra goodies for elfeed.
+#+BEGIN_SRC emacs-lisp
+(require 'elfeed)
+(require 'elfeed-goodies)
+
+(elfeed-goodies/setup)
 #+END_SRC
