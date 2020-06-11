@@ -23,6 +23,11 @@ Indentation guide lines
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'character)
 #+END_SRC
+
+Emojis
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook #'global-emojify-mode)
+#+END_SRC
 * Organisation
 ** Org-mode
 *** Define location of org-files for the agenda
@@ -34,8 +39,9 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 **** Org-ref
 #+BEGIN_SRC emacs-lisp
 (require 'org-ref)
-(setq reftex-default-bibliography '(concat org-directory "ref.bib"))
-(setq org-ref-pdf-directory "~/Documents/papers/")
+(setq reftex-default-bibliography '(concat org-directory "ref.bib")
+      org-ref-pdf-directory "~/Documents/papers/"
+      org-ref-bibliography-notes '(concat org-directory "knowledge/papers.org"))
 #+END_SRC
 *** Custom TODO workflow
 #+BEGIN_SRC emacs-lisp
@@ -64,6 +70,7 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 #+END_SRC
 
 *** Agenda
+Appearance of super-agenda
 #+BEGIN_SRC emacs-lisp
 ; Display start of agenda to today
 (setq org-agenda-start-day "0d")
@@ -90,17 +97,13 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
                                 :order 1)))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
-                        '((:name "Next to do"
-                                 :todo "NEXT"
-                                 :order 1)
-                          (:name "Important"
-                                 :tag "Important"
+                        '((:name "Urgent"
                                  :priority "A"
                                  :order 6)
-                          (:name "Due Today"
+                          (:name "Due today"
                                  :deadline today
                                  :order 2)
-                          (:name "Due Soon"
+                          (:name "Due soon"
                                  :deadline future
                                  :order 8)
                           (:name "Overdue"
@@ -114,7 +117,6 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
                                  :order 10)
                           (:name "Someday"
                                  :priority<= "C"
-                                 :tag ("Trivial" "Unimportant")
                                  :todo ("SOMEDAY" )
                                  :order 90)
                           (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
@@ -256,7 +258,7 @@ Debugger
 ** Rust
 These need some rust components to be [[https://github.com/racer-rust/emacs-racer][installed first]].
 #+BEGIN_SRC emacs-lisp
-(add-hook 'rust-mode-hook #'racer-mode)
+;;(add-hook 'rust-mode-hook #'racer-mode) ;; had some performace issues with this one
 (add-hook 'racer-mode-hook #'eldoc-mode)
 #+END_SRC
 
