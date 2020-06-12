@@ -127,6 +127,14 @@ export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 #----------------------------------------------
 alias ll='ls -all -h'
 
+
+# --- Python
+#----------------------------------------------
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+
+
 # --- Misc
 #----------------------------------------------
 # FZF
