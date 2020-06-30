@@ -9,7 +9,7 @@ clients, file templates and snippets.
 * Appearance
 #+BEGIN_SRC emacs-lisp
 ;; Font
-(setq doom-font (font-spec :family "monospace" :size 14))
+(setq doom-font (font-spec :family "monospace" :size 15))
 ;; Theme
 (setq doom-theme 'doom-one)
 ;; Custom startup screen
@@ -238,23 +238,39 @@ Debugger
 (global-set-key [f11] 'gud-step)
 #+END_SRC
 ** Python
+
+Sort imports
+#+BEGIN_SRC emacs-lisp
+(add-hook 'before-save-hook 'py-isort-before-save)
+#+END_SRC
+
+A lot of python features. Needs black intalled and pyenv-workon to auto-format on save.
+#+BEGIN_SRC emacs-lisp
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
 (use-package company-jedi
   :init (add-to-list 'company-backends 'company-jedi))
 (use-package python
   :hook ((python-mode . jedi:setup)))
-
-;; Debugger
-(setq gud-pdb-command-name "python -m pdb ")
-
-;; Autoformat on save
-; Set M-x pdb command to use the virtualenv's python debugger
-(add-hook 'python-mode-hook 'yapf-mode)
-; Check linting
-(add-hook 'python-mode-hook 'flycheck-mode)
-; Sort imports
-(add-hook 'before-save-hook 'py-isort-before-save)
 #+END_SRC
+
+Debugger
+#+BEGIN_SRC emacs-lisp
+; Set M-x pdb command to use the virtualenv's python debugger
+(setq gud-pdb-command-name "python -m pdb ")
+#+END_SRC
+
+Check linting (requires flake8)
+#+BEGIN_SRC emacs-lisp
+(add-hook 'python-mode-hook 'flycheck-mode)
+#+END_SRC
+
 ** Rust
 These need some rust components to be [[https://github.com/racer-rust/emacs-racer][installed first]].
 #+BEGIN_SRC emacs-lisp
