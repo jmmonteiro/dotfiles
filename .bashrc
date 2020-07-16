@@ -132,7 +132,7 @@ alias ll='ls -all -h'
 #----------------------------------------------
 export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 
 
 # --- Misc
