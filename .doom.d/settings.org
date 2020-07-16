@@ -307,6 +307,20 @@ Extra goodies for elfeed.
 #+BEGIN_SRC emacs-lisp
 (require 'elfeed)
 (require 'elfeed-goodies)
-
 (elfeed-goodies/setup)
+#+END_SRC
+
+Fix text wrapping.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'elfeed-show-mode-hook
+          (lambda ()
+            (let ((inhibit-read-only t)
+                  (inhibit-modification-hooks t))
+              (setq-local truncate-lines nil)
+              (setq-local shr-width 85)
+              (set-buffer-modified-p nil))
+            ;; (setq-local left-margin-width 15)
+            ;; (setq-local right-margin-width 15)
+
+            ))
 #+END_SRC
