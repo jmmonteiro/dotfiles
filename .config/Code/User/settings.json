@@ -4,7 +4,7 @@
     "breadcrumbs.enabled": true,
     "bracketPairColorizer.showBracketsInGutter": true,
     "workbench.statusBar.feedback.visible": false,
-    "python.venvPath": "~/python_env/",
+    "python.venvPath": "~/.virtualenvs/",
     "python.formatting.provider": "black",
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
@@ -17,7 +17,7 @@
     "C_Cpp.updateChannel": "Insiders",
     "cmake.configureOnOpen": false,
     "editor.minimap.enabled": false,
-    "python.pythonPath": "/home/joao/python_env/myEnv/bin/python",
+    "python.pythonPath": "~/virtualenvs/myEnv/bin/python",
     "lldb.adapterType": "bundled",
     "terminal.integrated.shell.linux": "/bin/bash",
     "editor.renderControlCharacters": false,

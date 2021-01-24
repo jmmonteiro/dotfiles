@@ -139,3 +139,5 @@ source ~/.local/bin/virtualenvwrapper.sh
 #----------------------------------------------
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Disable Insert key
+xmodmap -e "keycode 118 ="
