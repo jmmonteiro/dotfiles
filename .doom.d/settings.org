@@ -54,10 +54,11 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
+        '((sequence "TODO(t)" "NEXT(n)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
 
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "#74c95d" :weight bold)
+                ("NEXT" :foreground "#228B22" :weight bold)
                 ("BLOCKED" :foreground "#cc6666" :weight bold)
                 ("DONE" :foreground "#808080" :weight bold)
                 ("CANCELLED" :foreground "#f0c674" :weight bold)
@@ -85,8 +86,7 @@ Basic settings
 Appearance of super-agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-super-agenda-header-map (make-sparse-keymap))
-(setq spacemacs-theme-org-agenda-height nil
-      org-agenda-skip-scheduled-if-done t
+(setq org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-include-deadlines t
       org-agenda-include-diary t
@@ -105,27 +105,27 @@ Appearance of super-agenda
                           :order 1)))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
-                        '((:name "Urgent"
-                           :priority "A"
-                           :order 6)
+                        '(
+                          (:name "Next to do"
+                           :todo "NEXT"
+                           :order 1)
                           (:name "Due today"
                            :deadline today
                            :order 2)
-                          (:name "Due soon"
-                           :deadline future
-                           :order 8)
                           (:name "Overdue"
                            :deadline past
-                           :order 7)
-                          (:name "Waiting"
-                           :todo "WAIT"
-                           :order 20)
+                           :order 3)
+                          (:name "Due soon"
+                           :deadline future
+                           :order 4)
+                          (:name "Urgent"
+                           :priority "A"
+                           :order 5)
                           (:name "Regular work"
                            :priority "B"
-                           :order 10)
+                           :order 6)
                           (:name "Someday"
                            :priority<= "C"
-                           :todo ("SOMEDAY" )
                            :order 90)
                           (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
 (org-super-agenda-mode)
@@ -133,16 +133,14 @@ Appearance of super-agenda
 
 *** Notifications
 #+BEGIN_SRC emacs-lisp
-; Desktop notifications
-(setq alert-default-style 'libnotify)
+(setq alert-default-style 'libnotify) ; Desktop notifications
 (setq appt-disp-window-function (lambda (min-to-app new-time appt-msg)
-                                                         (alert appt-msg)))
-(setq appt-delete-window-function (lambda ()))
-; Rebuild the reminders everytime the agenda is displayed
-(add-hook 'org-agenda-finalize-hook (lambda () (org-agenda-to-appt t)))
-; Run once when Emacs starts
-(org-agenda-to-appt t)
-; Activate appointments so we get notifications
+                                  (alert appt-msg)))
+(setq appt-delete-window-function (lambda ())); Rebuild the reminders everytime the agenda is displayed
+
+(add-hook 'org-agenda-finalize-hook (lambda () (org-agenda-to-appt t))) ; Run once when Emacs starts
+
+(org-agenda-to-appt t) ; Activate appointments so we get notifications
 (appt-activate t)
 #+END_SRC
 *** Spelling
@@ -178,12 +176,12 @@ Appearance of super-agenda
 *** Hooks
 Automatically update checkbox counters on save.
 #+BEGIN_SRC emacs-lisp
-(defun custom_org_auto_check()
-  (org-update-checkbox-count t)
-  )
-(add-hook 'org-mode-hook
-          (lambda ()
-             (add-hook 'before-save-hook 'custom_org_auto_check nil 'make-it-local)))
+                                        ;(defun custom_org_auto_check()
+                                        ;  (org-update-checkbox-count t)
+                                        ;  )
+                                        ;(add-hook 'org-mode-hook
+                                        ;          (lambda ()
+                                        ;             (add-hook 'before-save-hook 'custom_org_auto_check nil 'make-it-local)))
 #+END_SRC
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
