@@ -27,6 +27,7 @@
 (package! org-alert)
 (package! org-ref)
 (package! org-d20)
+(package! org-bullets)
 ; Org-roam
 (package! company-org-roam)
 

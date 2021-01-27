@@ -30,6 +30,13 @@ Emojis
 #+END_SRC
 * Organisation
 ** Org-mode
+*** Appearance
+Bullet point icons in org files. With custom icons.
+#+begin_src emacs-lisp
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
 *** Define location of org-files for the agenda
 **** Org-mode
 You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The reason that this line of code is not in the block below, is because ~org~ is loaded on ~config.el~ (i.e. before this file is loaded), since you need ~org~ to be loaded to read this ~settings.org~ file in the first place.
@@ -46,8 +53,8 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 *** Custom TODO workflow
 #+BEGIN_SRC emacs-lisp
 (after! org
-(setq org-todo-keywords
-      '((sequence "TODO(t!)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
+  (setq org-todo-keywords
+        '((sequence "TODO(t!)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
 
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "#74c95d" :weight bold)
@@ -56,7 +63,7 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
                 ("CANCELLED" :foreground "#f0c674" :weight bold)
                 ("DELEGATED" :foreground "#b294bb" :weight bold))))
 
-)
+  )
 #+END_SRC
 *** Encryption
 #+BEGIN_SRC emacs-lisp
@@ -70,12 +77,13 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 #+END_SRC
 
 *** Agenda
+Basic settings
+#+begin_src emacs-lisp
+(setq org-agenda-start-day "0d") ; Display start of agenda to today
+#+end_src
+
 Appearance of super-agenda
 #+BEGIN_SRC emacs-lisp
-; Display start of agenda to today
-(setq org-agenda-start-day "0d")
-
-; -- super-agenda
 (setq org-super-agenda-header-map (make-sparse-keymap))
 (setq spacemacs-theme-org-agenda-height nil
       org-agenda-skip-scheduled-if-done t
@@ -84,41 +92,41 @@ Appearance of super-agenda
       org-agenda-include-diary t
       org-agenda-block-separator nil
       org-agenda-compact-blocks t
-      org-agenda-start-with-log-mode t)
+      org-agenda-start-with-log-mode nil) ; Do not display clocking information
 (setq org-agenda-custom-commands
       '(("z" "Super zoom view"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today"
-                                :time-grid t
-                                :date today
-                                :todo "TODAY"
-                                :scheduled today
-                                :order 1)))))
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '((:name "Urgent"
-                                 :priority "A"
-                                 :order 6)
+                           :priority "A"
+                           :order 6)
                           (:name "Due today"
-                                 :deadline today
-                                 :order 2)
+                           :deadline today
+                           :order 2)
                           (:name "Due soon"
-                                 :deadline future
-                                 :order 8)
+                           :deadline future
+                           :order 8)
                           (:name "Overdue"
-                                 :deadline past
-                                 :order 7)
+                           :deadline past
+                           :order 7)
                           (:name "Waiting"
-                                 :todo "WAIT"
-                                 :order 20)
+                           :todo "WAIT"
+                           :order 20)
                           (:name "Regular work"
-                                 :priority "B"
-                                 :order 10)
+                           :priority "B"
+                           :order 10)
                           (:name "Someday"
-                                 :priority<= "C"
-                                 :todo ("SOMEDAY" )
-                                 :order 90)
+                           :priority<= "C"
+                           :todo ("SOMEDAY" )
+                           :order 90)
                           (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
 (org-super-agenda-mode)
 #+END_SRC
