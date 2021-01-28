@@ -51,6 +51,12 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
       org-ref-bibliography-notes '(concat org-directory "knowledge/papers.org"))
 #+END_SRC
 *** Custom TODO workflow
+Set TODO statistics recursively. If a TODO has subTODOs make the top statistics count every single TODO under it
+#+BEGIN_SRC emacs-lisp
+(setq org-hierarchical-todo-statistics nil)
+#+END_SRC
+
+Workflow
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-todo-keywords
