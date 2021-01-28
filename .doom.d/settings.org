@@ -54,11 +54,12 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
+        '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "BLOCKED(b@/!)"  "|" "DONE(d!)" "CANCELED(c@)" "DELEGATED(o@/!)")))
 
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "#74c95d" :weight bold)
                 ("NEXT" :foreground "#228B22" :weight bold)
+                ("WAIT" :foreground "#fa8072" :weight bold)
                 ("BLOCKED" :foreground "#cc6666" :weight bold)
                 ("DONE" :foreground "#808080" :weight bold)
                 ("CANCELLED" :foreground "#f0c674" :weight bold)
@@ -78,17 +79,22 @@ You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The 
 #+END_SRC
 
 *** Agenda
-Basic settings
+**** Basic settings
+Display start of agenda to today
 #+begin_src emacs-lisp
-(setq org-agenda-start-day "0d") ; Display start of agenda to today
+(setq org-agenda-start-day "0d")
 #+end_src
 
-Appearance of super-agenda
+Turn off holidays
+#+begin_src emacs-lisp
+(setq calendar-holidays nil)
+#+end_src
+**** Appearance of super-agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-super-agenda-header-map (make-sparse-keymap))
 (setq org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
-      org-agenda-include-deadlines t
+      org-agenda-include-deadlines nil ; removes items with deadline from the top
       org-agenda-include-diary t
       org-agenda-block-separator nil
       org-agenda-compact-blocks t
@@ -121,9 +127,12 @@ Appearance of super-agenda
                           (:name "Urgent"
                            :priority "A"
                            :order 5)
+                          (:name "Waiting"
+                           :todo "WAIT"
+                           :order 6)
                           (:name "Regular work"
                            :priority "B"
-                           :order 6)
+                           :order 7)
                           (:name "Someday"
                            :priority<= "C"
                            :order 90)

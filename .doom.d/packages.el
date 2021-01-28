@@ -28,6 +28,7 @@
 (package! org-ref)
 (package! org-d20)
 (package! org-bullets)
+(package! org-ql)
 ; Org-roam
 (package! company-org-roam)
 
