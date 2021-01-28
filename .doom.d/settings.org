@@ -24,10 +24,6 @@ Indentation guide lines
 (setq highlight-indent-guides-method 'character)
 #+END_SRC
 
-Emojis
-#+BEGIN_SRC emacs-lisp
-(add-hook 'after-init-hook #'global-emojify-mode)
-#+END_SRC
 * Organisation
 ** Org-mode
 *** Appearance

@@ -20,7 +20,6 @@
 
 ; Display
 (package! highlight-indent-guides)
-(package! emojify)
 
 ; Org-mode
 (package! org-super-agenda)
