@@ -299,6 +299,11 @@ Check linting (requires flake8)
 (add-hook 'python-mode-hook 'flycheck-mode)
 #+END_SRC
 
+Start python environment automatically
+#+begin_src emacs-lisp
+(pyvenv-workon "myEnv")
+#+end_src
+
 ** Rust
 These need some rust components to be [[https://github.com/racer-rust/emacs-racer][installed first]].
 #+BEGIN_SRC emacs-lisp
