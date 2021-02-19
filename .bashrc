@@ -141,3 +141,6 @@ source ~/.local/bin/virtualenvwrapper.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Disable Insert key
 xmodmap -e "keycode 118 ="
+
+# --- Add paths to misc software binaries
+export PATH="~/software/:$PATH"

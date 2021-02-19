@@ -52,6 +52,7 @@
 
 ; interactive functions which allows users to transpose windows arrangement in currently selected frame.
 (package! transpose-frame) ;
+(package! yaml-mode) ;
 
 
 

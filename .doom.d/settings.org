@@ -7,6 +7,11 @@ clients, file templates and snippets.
       user-mail-address "")
 #+END_SRC
 * Appearance
+Window title
+#+BEGIN_SRC emacs-lisp
+(setq frame-title-format '("" "%b – Emacs " emacs-version))
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
 ;; Font
 (setq doom-font (font-spec :family "monospace" :size 15))
@@ -114,31 +119,33 @@ Turn off holidays
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '(
-                          (:name "Next to do"
-                           :todo "NEXT"
-                           :order 1)
-                          (:name "Due today"
-                           :deadline today
-                           :order 2)
                           (:name "Overdue"
-                           :deadline past
-                           :order 3)
+                           :deadline past)
+                          (:name "Due today"
+                           :deadline today)
+                          (:name "Next to do"
+                           :todo "NEXT")
                           (:name "Due soon"
-                           :deadline future
-                           :order 4)
+                           :deadline future)
                           (:name "Urgent"
-                           :priority "A"
-                           :order 5)
+                           :priority "A")
+                          (:name "Peer/Code Review"
+                           :tag ("feedback" "review" "code_review"))
                           (:name "Waiting"
-                           :todo "WAIT"
-                           :order 6)
+                           :todo "WAIT")
+                          (:name "This sprint"
+                           :tag "sprint")
                           (:name "Regular work"
-                           :priority "B"
-                           :order 7)
+                           :priority "B")
                           (:name "Someday"
-                           :priority<= "C"
-                           :order 90)
-                          (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
+                           :priority<= "C")
+                          (:name "Personal"
+                           :tag "personal")
+                          (:name "Go"
+                           :tag "go")
+                          (:discard (:tag ("chore" "routine" "daily" "habit")))
+                                        ;(:discard (:anything))
+                          ))))))))
 (org-super-agenda-mode)
 #+END_SRC
 
@@ -164,25 +171,25 @@ Turn off holidays
 #+BEGIN_SRC emacs-lisp
 (after! org-capture
   (add-to-list 'org-capture-templates
-          '("q"               ; key
-            "Work Note"         ; name
-            entry             ; type
-            (file "~/Dropbox/org/work/notes.org")  ; target
-            "* %U %? "  ; template
-            :empty-lines 0    ; properties
-            :created t        ; properties
-            ))
+               '("q"               ; key
+                 "Work Note"       ; name
+                 entry             ; type
+                 (file "~/Dropbox/org/work/notes.org")  ; target
+                 "* %U %? "  ; template
+                 :empty-lines 0    ; properties
+                 :created t        ; properties
+                 ))
   (add-to-list 'org-capture-templates
-         '("w"               ; key
-           "Work TODO"         ; name
-           entry             ; type
-           (file+headline "~/Dropbox/org/work/todo.org" "Inbox")  ; target
-           "* TODO %? \n:PROPERTIES:\n:Created: %U\n:END:\n%i\n %a"  ; template
-           :prepend t        ; properties
-           :empty-lines 0    ; properties
-           :created t        ; properties
-           ))
-)
+               '("w"               ; key
+                 "Work TODO"       ; name
+                 entry             ; type
+                 (file+headline "~/Dropbox/org/work/todo.org" "Inbox")  ; target
+                 "* TODO %? \n:PROPERTIES:\n:Created: %U\n:END:\n%i\n %a"  ; template
+                 :prepend t        ; properties
+                 :empty-lines 0    ; properties
+                 :created t        ; properties
+                 ))
+  )
 #+END_SRC
 *** Hooks
 Automatically update checkbox counters on save.
@@ -193,6 +200,12 @@ Automatically update checkbox counters on save.
                                         ;(add-hook 'org-mode-hook
                                         ;          (lambda ()
                                         ;             (add-hook 'before-save-hook 'custom_org_auto_check nil 'make-it-local)))
+#+END_SRC
+Autosave on clock-in / clock-out
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook (lambda ()
+                           (defadvice org-clock-in (after org-clock-in-after activate) (save-buffer))
+                           (defadvice org-clock-out (after org-clock-out-after activate) (save-buffer))))
 #+END_SRC
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
@@ -265,7 +278,8 @@ Debugger
 (global-set-key [f10] 'gud-next)
 (global-set-key [f11] 'gud-step)
 #+END_SRC
-** Python
+** Languages
+*** Python
 
 Sort imports (disabled for now, since it does not work very well with =black=)
 #+BEGIN_SRC emacs-lisp
@@ -304,7 +318,7 @@ Start python environment automatically
 (pyvenv-workon "myEnv")
 #+end_src
 
-** Rust
+*** Rust
 These need some rust components to be [[https://github.com/racer-rust/emacs-racer][installed first]].
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'rust-mode-hook #'racer-mode) ;; had some performace issues with this one
@@ -319,6 +333,12 @@ Auto completion
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
 #+END_SRC
+*** yaml
+#+begin_src emacs-lisp
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+#+end_src
+
 * RSS
 Elfeed-org
 #+BEGIN_SRC emacs-lisp
