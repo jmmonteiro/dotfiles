@@ -137,6 +137,8 @@ Turn off holidays
                            :tag "sprint")
                           (:name "Regular work"
                            :priority "B")
+                          (:name "Research"
+                           :tag "research")
                           (:name "Someday"
                            :priority<= "C")
                           (:name "Personal"
@@ -207,6 +209,16 @@ Autosave on clock-in / clock-out
                            (defadvice org-clock-in (after org-clock-in-after activate) (save-buffer))
                            (defadvice org-clock-out (after org-clock-out-after activate) (save-buffer))))
 #+END_SRC
+*** Misc
+Graphviz
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot
+#+end_src
+
+#+RESULTS:
+
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
 (use-package org-roam
