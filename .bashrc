@@ -144,3 +144,7 @@ xmodmap -e "keycode 118 ="
 
 # --- Add paths to misc software binaries
 export PATH="~/software/:$PATH"
+
+# --- Default Editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
