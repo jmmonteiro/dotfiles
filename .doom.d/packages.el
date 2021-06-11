@@ -27,7 +27,8 @@
 (package! org-ref)
 (package! org-d20)
 (package! org-bullets)
-(package! org-ql)
+(package! ob-ipython) ;; Inline python plots
+
 ; Org-roam
 (package! company-org-roam)
 
@@ -54,6 +55,8 @@
 (package! transpose-frame) ;
 (package! yaml-mode) ;
 
+; Disable snipe mode
+(package! evil-snipe :disable t)
 
 
 ;; To install a package directly from a particular repo, you'll need to specify

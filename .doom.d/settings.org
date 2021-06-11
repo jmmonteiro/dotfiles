@@ -38,6 +38,17 @@ Bullet point icons in org files. With custom icons.
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 
+[[https://emacs.stackexchange.com/questions/44516/orgmode-ipython-output-image-not-show-in-results][Make sure ipython-ob is included in the babel-languages]]. Allows for inline python plots with ob-ipython.
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (ipython . t)
+   (latex . t)
+   ))
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+#+end_src
+
 *** Define location of org-files for the agenda
 **** Org-mode
 You need to set ~(setq org-directory "~/Dropbox/org/")~ before loading org. The reason that this line of code is not in the block below, is because ~org~ is loaded on ~config.el~ (i.e. before this file is loaded), since you need ~org~ to be loaded to read this ~settings.org~ file in the first place.
@@ -105,6 +116,7 @@ Turn off holidays
       org-agenda-include-diary t
       org-agenda-block-separator nil
       org-agenda-compact-blocks t
+      ;;      org-agenda-todo-list-sublevels nil ; only show top level TODOs
       org-agenda-start-with-log-mode nil) ; Do not display clocking information
 (setq org-agenda-custom-commands
       '(("z" "Super zoom view"
@@ -136,13 +148,17 @@ Turn off holidays
                           (:name "This sprint"
                            :tag "sprint")
                           (:name "Regular work"
-                           :priority "B")
+                           :and (:priority "B" :tag "work"))
+                          (:name "Personal and important"
+                           :and (:priority>= "B" :tag "personal"))
                           (:name "Research"
                            :tag "research")
                           (:name "Someday"
                            :priority<= "C")
-                          (:name "Personal"
-                           :tag "personal")
+                          (:name "Books and other things to read"
+                           :tag ("book" "to_read"))
+                          (:name "Films and shows to watch"
+                           :tag ("to_watch"))
                           (:name "Go"
                            :tag "go")
                           (:discard (:tag ("chore" "routine" "daily" "habit")))
@@ -191,6 +207,16 @@ Turn off holidays
                  :empty-lines 0    ; properties
                  :created t        ; properties
                  ))
+  (add-to-list 'org-capture-templates
+               '("c"               ; key
+                 "Code Review TODO"       ; name
+                 entry             ; type
+                 (file+headline "~/Dropbox/org/work/code_review.org" "Inbox")  ; target
+                 "* TODO %? \n:PROPERTIES:\n:Created: %U\n:END:\n%i\n %a"  ; template
+                 :prepend t        ; properties
+                 :empty-lines 0    ; properties
+                 :created t        ; properties
+                 ))
   )
 #+END_SRC
 *** Hooks
@@ -217,25 +243,22 @@ Graphviz
  '((dot . t))) ; this line activates dot
 #+end_src
 
-#+RESULTS:
-
 ** Org-roam
 #+BEGIN_SRC emacs-lisp
-(use-package org-roam
-      :hook
-      (after-init . org-roam-mode)
-      :custom
-      (org-roam-directory org-directory)
-      (org-roam-index-file (concat org-directory "index.org"))
-      :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n j" . org-roam-jump-to-index)
-               ("C-c n b" . org-roam-switch-to-buffer)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))))
-
+                                        ;(use-package org-roam
+                                        ;      :hook
+                                        ;      (after-init . org-roam-mode)
+                                        ;      :custom
+                                        ;      (org-roam-directory org-directory)
+                                        ;      (org-roam-index-file (concat org-directory "index.org"))
+                                        ;      :bind (:map org-roam-mode-map
+                                        ;              (("C-c n l" . org-roam)
+                                        ;               ("C-c n f" . org-roam-find-file)
+                                        ;               ("C-c n j" . org-roam-jump-to-index)
+                                        ;               ("C-c n b" . org-roam-switch-to-buffer)
+                                        ;               ("C-c n g" . org-roam-graph))
+                                        ;              :map org-mode-map
+                                        ;              (("C-c n i" . org-roam-insert))))
 #+END_SRC
 ** Searching
 Doom Emacs already uses ~ripgrep~ with SPC-n-s. Why not add ~deft~ as well with SPC-n-d?
@@ -266,10 +289,6 @@ Used to manage personal finances
 (define-key evil-visual-state-map "j" 'evil-next-visual-line)
 (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
-; Restore "s" to the standard vim behaviour
-; https://github.com/hlissner/doom-emacs/issues/1307
-(after! evil-snipe
-  (evil-snipe-mode -1))
 #+END_SRC
 * Programming
 ** General
